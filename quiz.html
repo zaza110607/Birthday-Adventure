@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Friendship Quiz 💙</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #dff3ff, #ffffff, #bde7ff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #174a70;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        /* Hiasan hati */
+        .heart {
+            position: fixed;
+            bottom: -30px;
+            font-size: 25px;
+            animation: naik 8s linear infinite;
+            opacity: 0.7;
+            z-index: 0;
+        }
+
+        .heart:nth-child(1) {
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .heart:nth-child(2) {
+            left: 30%;
+            animation-delay: 2s;
+        }
+
+        .heart:nth-child(3) {
+            left: 55%;
+            animation-delay: 4s;
+        }
+
+        .heart:nth-child(4) {
+            left: 80%;
+            animation-delay: 1s;
+        }
+
+        @keyframes naik {
+            0% {
+                transform: translateY(0);
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translateY(-110vh);
+                opacity: 0;
+            }
+        }
+
+        /* Kotak utama */
+        .quiz-container {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 500px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px 25px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(40, 120, 170, 0.25);
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 0;
+            color: #0875b8;
+            font-size: 30px;
+        }
+
+        .subtitle {
+            color: #56809c;
+            margin-bottom: 25px;
+        }
+
+        /* Nomor soal */
+        .question-number {
+            font-weight: bold;
+            color: #168bd0;
+            margin-bottom: 10px;
+        }
+
+        /* Pertanyaan */
+        #question {
+            font-size: 21px;
+            font-weight: bold;
+            line-height: 1.5;
+            margin: 20px 0;
+            color: #174a70;
+        }
+
+        /* Jawaban */
+        .answers {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .answer-btn {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #9ddcff;
+            border-radius: 15px;
+            background: #f7fcff;
+            color: #175a80;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .answer-btn:hover {
+            background: #dff4ff;
+            transform: scale(1.02);
+        }
+
+        .answer-btn.correct {
+            background: #c8f7d4;
+            border-color: #42b866;
+            color: #17682d;
+        }
+
+        .answer-btn.wrong {
+            background: #ffd5d5;
+            border-color: #e65a5a;
+            color: #9b2222;
+        }
+
+        /* Feedback */
+        #feedback {
+            min-height: 30px;
+            margin: 18px 0;
+            font-weight: bold;
+            font-size: 17px;
+        }
+
+        .correct-text {
+            color: #209442;
+        }
+
+        .wrong-text {
+            color: #d83b3b;
+        }
+
+        /* Tombol lanjut */
+        #nextBtn,
+        #finishBtn {
+            border: none;
+            background: #0b83c9;
+            color: white;
+            padding: 13px 25px;
+            border-radius: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+
+        #nextBtn:hover,
+        #finishBtn:hover {
+            background: #08689f;
+            transform: scale(1.05);
+        }
+
+        /* Hasil */
+        #result {
+            display: none;
+        }
+
+        .score {
+            font-size: 30px;
+            font-weight: bold;
+            color: #0875b8;
+            margin: 20px 0;
+        }
+
+        .result-message {
+            font-size: 17px;
+            line-height: 1.6;
+            color: #416b85;
+        }
+
+        .progress {
+            height: 10px;
+            width: 100%;
+            background: #e4f5ff;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: #1598d5;
+            border-radius: 20px;
+            transition: width 0.4s ease;
+        }
+
+        @media (max-width: 480px) {
+            .quiz-container {
+                padding: 25px 18px;
+            }
+
+            h1 {
+                font-size: 26px;
+            }
+
+            #question {
+                font-size: 18px;
+            }
+
+            .answer-btn {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Hati bergerak -->
+    <div class="heart">💙</div>
+    <div class="heart">🤍</div>
+    <div class="heart">💙</div>
+    <div class="heart">🤍</div>
+
+    <div class="quiz-container">
+
+        <!-- BAGIAN QUIZ -->
+        <div id="quiz">
+
+            <h1>Friendship Quiz 💙</h1>
+
+            <p class="subtitle">
+                Yuk jawab pertanyaan tentang persahabatan kita! 🥰
+            </p>
+
+            <div class="progress">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+
+            <div class="question-number" id="questionNumber">
+                Pertanyaan 1 dari 10
+            </div>
+
+            <div id="question">
+                Pertanyaan akan muncul di sini
+            </div>
+
+            <div class="answers" id="answers"></div>
+
+            <div id="feedback"></div>
+
+            <button id="nextBtn" style="display:none;">
+                💙 Pertanyaan Selanjutnya
+            </button>
+
+        </div>
+
+
+        <!-- BAGIAN HASIL -->
+        <div id="result">
+
+            <h1>Quiz Selesai! 🎉</h1>
+
+            <p>Ini dia hasil jawabanmu:</p>
+
+            <div class="score" id="score">
+                0 / 10
+            </div>
+
+            <p class="result-message" id="resultMessage">
+                Kamu berhasil menyelesaikan quiz! 💙
+            </p>
+
+            <button id="finishBtn">
+                🖼️ Lanjut ke Kenangan
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        /* =========================
+           DATA PERTANYAAN
+        ========================= */
+
+        const questions = [
+
+            {
+                question: "Siapa orang yang sedang merayakan ulang tahun? 🎂",
+                answers: [
+                    "Piya 💙",
+                    "Batman 🦇",
+                    "Spongebob 🧽",
+                    "Doraemon 🤖"
+                ],
+                correct: 0
+            },
+
+            {
+                question: "Apa yang paling penting dalam sebuah persahabatan?",
+                answers: [
+                    "Saling percaya 🤝",
+                    "Saling bertengkar 😡",
+                    "Saling menghilang 👻",
+                    "Tidak pernah ngobrol 🤐"
+                ],
+                correct: 0
+            },
+
+            {
+                question: "Kalau sahabat sedang sedih, sebaiknya kita...",
+                answers: [
+                    "Meninggalkannya",
+                    "Menertawakannya",
+                    "Menemani dan mendengarkan 💙",
+                    "Pura-pura tidak tahu"
+                ],
+                correct: 2
+            },
+
+            {
+                question: "Momen bersama sahabat biasanya menjadi...",
+                answers: [
+                    "Kenangan indah 📸",
+                    "Hal yang harus dilupakan",
+                    "Masalah besar",
+                    "Tidak berarti"
+                ],
+                correct: 0
+            },
+
+            {
+                question: "Apa yang membuat persahabatan tetap kuat?",
+                answers: [
+                    "Kejujuran dan komunikasi 💬",
+                    "Saling cuek",
+                    "Saling menjauh",
+                    "Tidak peduli"
+                ],
+                correct: 0
+            },
+
+            {
+                question: "Kalau sahabat ulang tahun, kita sebaiknya...",
+                answers: [
+                    "Mengucapkan selamat 🎂",
+                    "Melupakannya",
+                    "Marah",
+                    "Pergi tanpa kabar"
+                ],
+                correct
