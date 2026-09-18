@@ -26,7 +26,7 @@ function checkPassword() {
 
         setTimeout(function() {
 
-            window.location.href = "quiz.html";
+            window.location.href = "game.html";
 
         }, 1500);
 
