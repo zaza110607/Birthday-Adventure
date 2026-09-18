@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Galeri Piya 💙</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #dff6ff, #ffffff, #b9e5ff);
+            color: #164b6b;
+            padding: 25px 15px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 850px;
+            margin: auto;
+            text-align: center;
+        }
+
+        h1 {
+            color: #12669a;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #63879b;
+            margin-bottom: 30px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .photo-card {
+            background: white;
+            border-radius: 20px;
+            padding: 10px;
+            box-shadow: 0 8px 25px rgba(0, 90, 150, 0.15);
+            cursor: pointer;
+            transition: 0.3s;
+            animation: muncul 0.8s ease;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 12px 30px rgba(0, 90, 150, 0.25);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+            border-radius: 15px;
+            display: block;
+        }
+
+        .caption {
+            padding: 12px 5px 5px;
+            color: #12669a;
+            font-weight: bold;
+        }
+
+        .number {
+            color: #6c93a8;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        .button-area {
+            margin-top: 35px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            border: none;
+            background: #168bd0;
+            color: white;
+            padding: 15px 28px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 6px 18px rgba(0, 120, 190, 0.2);
+        }
+
+        button:hover {
+            background: #0d72ae;
+        }
+
+        /* FOTO BESAR */
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 55, 90, 0.85);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal img {
+            max-width: 95%;
+            max-height: 85vh;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+        }
+
+        .heart {
+            position: fixed;
+            font-size: 20px;
+            animation: float 7s linear infinite;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        @keyframes muncul {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: translateY(-10vh);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .gallery {
+                gap: 12px;
+            }
+
+            .photo-card img {
+                height: 170px;
+            }
+        }
+
+        @media (max-width: 380px) {
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .photo-card img {
+                height: 260px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HATI TERBANG -->
+
+    <div class="heart" style="left:8%; animation-delay:0s;">💙</div>
+    <div class="heart" style="left:28%; animation-delay:2s;">🤍</div>
+    <div class="heart" style="left:55%; animation-delay:4s;">💙</div>
+    <div class="heart" style="left:80%; animation-delay:1s;">🤍</div>
+
+
+    <div class="container">
+
+        <h1>🖼️ Galeri Piya 💙</h1>
+
+        <div class="subtitle">
+            10 foto, 10 cerita, dan banyak kenangan ✨
+        </div>
+
+
+        <div class="gallery">
+
+            <div class="photo-card"
+                 onclick="openPhoto('foto%20kenangan%201.jpg')">
+
+                <img src="foto%20kenangan%201.jpg"
+                     alt="Foto Kenangan 1">
+
+                <div class="caption">
+                    💙 Momen yang indah
+                </div>
+
+                <div class="number">
+                    Foto 1
+                </div>
+
+            </div>
+
+
+            <div class="photo-card"
+                 onclick="openPhoto('foto%20kenangan%202.jpg')">
+
+                <img src="foto%20kenangan%202.jpg"
+                     alt="Foto Kenangan 2">
+
+                <div class="caption">
+                    🤍 Senyum yang selalu diingat
+                </div>
+
+                <div class="number">
+                    Foto 2
+                </div>
+
+            </div>
+
+
+            <div class="photo-card"
+                 onclick="openPhoto('foto%20kenangan%203.jpg')">
+
+                <img src="foto%20kenangan%203.jpg"
+                     alt="Foto Kenangan 3">
+
+                <div class="caption">
+                    💙 Sebuah cerita
+                </div>
+
+                <div class="number">
+                    Foto 3
+                </div>
+
+            </div>
+
+
+            <div class="photo-card"
+                 onclick="openPhoto('foto%20kenangan%204.jpg')">
+
+                <img src="foto%20kenangan%204.jpg"
+                     alt="Foto Kenangan 4">
+
+                <div class="caption">
+                    🤍 Momen sederhana
+                </div>
+
+                <div class="number">
+                    Foto 4
+                </div>
+
+            </div>
+
+
+            <div class="photo-card"
+                 onclick="openPhoto('foto%20kenangan%205.jpg')">
+
+                <img src="foto%20kenangan%205.jpg"
+                     alt="Foto Kenangan 5">
+
+                <div class="caption">
+                    💙 Tawa dan cerita
+                </div>
+
+                <div class="number">
+                    Foto 5
+                </div>
+
+            </div>
+
+
+            <div class="photo-card"
+                 onclick="openPhoto('foto%20kenangan%206.jpg')">
+
+                <img src="foto%20kenangan%206.jpg"
+                     alt="Foto Kenangan 6">
+
+                <div class="caption">
+                    🤍 Kenangan berharga
+                </div>
+
+                <div class="number">
+                    Foto 6
+                </div>
+
+            </div>
+
+
+            <div class="photo-card"
+                 onclick="openPhoto('foto%20kenangan%207.jpg')">
+
+                <img src="foto%20kenangan%207.jpg"
+                     alt="Foto Kenangan 7">
+
+                <div class="caption">
+                    💙 Cerita kita
+                </div>
+
+                <div class="number">
+                    Foto 7
+                </div>
+
+            </div>
+
+
+            <div class="photo-card"
+                 onclick="openPhoto('foto%20kenangan%208.jpg')">
+
+                <img src="foto%20kenangan%208.jpg"
+                     alt="Foto Kenangan 8">
+
+                <div class="caption">
+                    🤍 Momen spesial
+                </div>
+
+                <div class="number">
+                    Foto 8
+                </div>
+
+            </div>
+
+
+            <div class="photo-card"
+                 onclick="openPhoto('foto%20kenangan%209.jpg')">
+
+                <img src="foto%20kenangan%209.jpg"
+                     alt="Foto Kenangan 9">
+
+                <div class="caption">
+                    💙 Selalu terkenang
+                </div>
+
+                <div class="number">
+                    Foto 9
+                </div>
+
+            </div>
+
+
+            <div class="photo-card"
+                 onclick="openPhoto('foto%20kenangan%2010.jpg')">
+
+                <img src="foto%20kenangan%2010.jpg"
+                     alt="Foto Kenangan 10">
+
+                <div class="caption">
+                    🤍 Kenangan terakhir
+                </div>
+
+                <div class="number">
+                    Foto 10
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="button-area">
+
+            <button onclick="goToFinal()">
+                🎁 Kejutan Terakhir
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- MODAL -->
+
+    <div class="modal" id="photoModal">
+
+        <span class="close" onclick="closePhoto()">
+            &times;
+        </span>
+
+        <img id="bigPhoto" src="" alt="Foto diperbesar">
+
+    </div>
+
+
+    <script>
+
+        function openPhoto(photo) {
+
+            document.getElementById("photoModal").style.display = "flex";
+
+            document.getElementById("bigPhoto").src = photo;
+
+        }
+
+
+        function closePhoto() {
+
+            document.getElementById("photoModal").style.display = "none";
+
+        }
+
+
+        document.getElementById("photoModal").onclick = function(event) {
+
+            if (event.target === this) {
+                closePhoto();
+            }
+
+        };
+
+
+        function goToFinal() {
+
+            window.location.href = "akhir.html";
+
+        }
+
+    </script>
+
+</body>
+  </html>
