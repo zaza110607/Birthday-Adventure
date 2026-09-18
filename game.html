@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Piya's Friendship Quiz 💙</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .quiz-container {
+            width: 90%;
+            max-width: 430px;
+            background: white;
+            padding: 30px 22px;
+            border-radius: 28px;
+            box-shadow: 0 15px 40px rgba(41,129,180,0.18);
+            text-align: center;
+            border: 2px solid #d5effc;
+            animation: appear 0.7s ease;
+        }
+
+        .quiz-icon {
+            font-size: 55px;
+            margin-bottom: 8px;
+        }
+
+        .progress {
+            font-size: 13px;
+            color: #579bc5;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .quiz-container h1 {
+            font-size: 27px;
+            color: #164a70;
+            margin-bottom: 12px;
+        }
+
+        .question {
+            font-size: 18px;
+            line-height: 1.5;
+            color: #315d76;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .answer {
+            width: 100%;
+            padding: 14px;
+            margin: 7px 0;
+
+            border: 2px solid #c7eafb;
+            border-radius: 14px;
+
+            background: #f4fbff;
+            color: #245a78;
+
+            font-size: 14px;
+            font-weight: bold;
+
+            cursor: pointer;
+            transition: 0.25s;
+        }
+
+        .answer:hover {
+            background: #e2f5ff;
+            transform: translateY(-2px);
+        }
+
+        .answer.correct {
+            background: #d9f8e8;
+            border-color: #58b985;
+            color: #187447;
+        }
+
+        .answer.wrong {
+            background: #ffe1e7;
+            border-color: #e07a91;
+            color: #a93650;
+        }
+
+        #feedback {
+            min-height: 25px;
+            margin-top: 15px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .next-btn {
+            display: none;
+
+            width: 100%;
+            padding: 14px;
+
+            margin-top: 15px;
+
+            border: none;
+            border-radius: 14px;
+
+            background: #278cc4;
+            color: white;
+
+            font-size: 15px;
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        .result {
+            display: none;
+        }
+
+        .score {
+            font-size: 40px;
+            font-weight: bold;
+            color: #278cc4;
+            margin: 20px 0;
+        }
+
+        .continue-btn {
+            display: inline-block;
+
+            padding: 14px 25px;
+
+            border-radius: 14px;
+
+            background: linear-gradient(
+                135deg,
+                #278cc4,
+                #54b9e8
+            );
+
+            color: white;
+            text-decoration: none;
+
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="hearts">
+        <span>💙</span>
+        <span>🤍</span>
+        <span>💙</span>
+        <span>🤍</span>
+        <span>💙</span>
+        <span>🤍</span>
+        <span>💙</span>
+        <span>🤍</span>
+    </div>
+
+    <div class="quiz-container">
+
+        <div class="quiz-icon">🎮</div>
+
+        <h1>Friendship Quiz 💙</h1>
+
+        <div class="progress" id="progress">
+            Pertanyaan 1 dari 10
+        </div>
+
+        <div id="quiz">
+
+            <div class="question" id="question"></div>
+
+            <div id="answers"></div>
+
+            <div id="feedback"></div>
+
+            <button class="next-btn" id="nextBtn" onclick="nextQuestion()">
+                Lanjut ➜
+            </button>
+
+        </div>
+
+        <div class="result" id="result">
+
+            <div class="quiz-icon">🎉</div>
+
+            <h1>Quiz Selesai!</h1>
+
+            <p>
+                Wahh, akhirnya selesai juga! 😂💙
+            </p>
+
+            <div class="score" id="score"></div>
+
+            <p id="resultText"></p>
+
+            <br>
+
+            <a href="kenangan.html" class="continue-btn">
+                📸 Lihat Kenangan
+            </a>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        const questions = [
+
+            {
+                question: "Siapa yang paling sering melakukan hal random? 😂",
+                answers: [
+                    "Aku",
+                    "Piya",
+                    "Kita berdua",
+                    "Tidak ada"
+                ],
+                correct: 2
+            },
+
+            {
+                question: "Kalau lagi bingung, biasanya kita ngapain?",
+                answers: [
+                    "Tidur",
+                    "Ngobrol",
+                    "Makan",
+                    "Semua benar 😂"
+                ],
+                correct: 3
+            },
+
+            {
+                question: "Apa yang paling susah ditemukan saat kita pergi bersama?",
+                answers: [
+                    "Tempat makan",
+                    "Parkiran",
+                    "Waktu pulang",
+                    "Ketenangan 😂"
+                ],
+                correct: 3
+            },
+
+            {
+                question: "Kalau ada foto jelek kita, apa yang biasanya terjadi?",
+                answers: [
+                    "Dihapus",
+                    "Disimpan",
+                    "Dijadikan bahan bercanda",
+                    "Semua benar 😂"
+                ],
+                correct: 3
+            },
+
+            {
+                question: "Siapa yang biasanya lebih dulu ngajak ngobrol?",
+                answers: [
+                    "Aku",
+                    "Piya",
+                    "Tergantung keadaan",
+                    "Tidak ingat 😂"
+                ],
+                correct: 2
+            },
+
+            {
+                question: "Apa yang paling penting dalam persahabatan?",
+                answers: [
+                    "Saling percaya",
+                    "Saling mendukung",
+                    "Saling mengerti",
+                    "Semuanya 💙"
+                ],
+                correct: 3
+            },
+
+            {
+                question: "Kalau kita punya waktu kosong, kemungkinan terbesar...",
+                answers: [
+                    "Jalan-jalan",
+                    "Makan",
+                    "Ngobrol",
+                    "Semua bisa terjadi 😂"
+                ],
+                correct: 3
+            },
+
+            {
+                question: "Kalau ada masalah, seorang sahabat seharusnya...",
+                answers: [
+                    "Menghilang",
+                    "Mendengarkan",
+                    "Menyalahkan",
+                    "Pura-pura tidak tahu"
+                ],
+                correct: 1
+            },
+
+            {
+                question: "Berapa lama persahabatan kita akan bertahan?",
+                answers: [
+                    "Sebentar",
+                    "Sampai lulus",
+                    "Sampai tua",
+                    "Selamanya 💙"
+                ],
+                correct: 3
+            },
+
+            {
+                question: "Pertanyaan terakhir... Piya siap menerima surprise? 🎂",
+                answers: [
+                    "Belum siap",
+                    "Mungkin",
+                    "Siap!",
+                    "SANGAT SIAP! 🎉"
+                ],
+                correct: 3
+            }
+
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let answered = false;
+
+        const questionElement =
+            document.getElementById("question");
+
+        const answersElement =
+            document.getElementById("answers");
+
+        const feedbackElement =
+            document.getElementById("feedback");
+
+        const nextButton =
+            document.getElementById("nextBtn");
+
+        const progressElement =
+            document.getElementById("progress");
+
+
+        function showQuestion() {
+
+            answered = false;
+
+            nextButton.style.display = "none";
+
+            feedbackElement.innerHTML = "";
+
+            const current = questions[currentQuestion];
+
+            progressElement.innerHTML =
+                `Pert
