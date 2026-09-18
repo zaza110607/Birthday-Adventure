@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7 Kenangan Kita 💙</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #dff4ff, #ffffff, #bde3ff);
+            color: #164b6b;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 430px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 8px;
+            color: #12669a;
+        }
+
+        .subtitle {
+            margin-bottom: 20px;
+            color: #527d96;
+        }
+
+        .counter {
+            background: white;
+            padding: 8px 18px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 18px;
+            box-shadow: 0 5px 15px rgba(0, 100, 160, 0.12);
+            font-weight: bold;
+        }
+
+        .card-container {
+            perspective: 1000px;
+            width: 100%;
+            height: 430px;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transition: transform 0.7s;
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        .card.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card-front,
+        .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 25px;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0, 90, 150, 0.18);
+            overflow: hidden;
+        }
+
+        .card-front img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .photo-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(18, 102, 154, 0.88);
+            color: white;
+            padding: 14px;
+            font-weight: bold;
+        }
+
+        .card-back {
+            transform: rotateY(180deg);
+            padding: 30px 22px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card-back h2 {
+            color: #12669a;
+            margin-bottom: 15px;
+        }
+
+        .card-back p {
+            line-height: 1.7;
+            color: #42677d;
+        }
+
+        .hint {
+            font-size: 13px;
+            color: #6b91a8;
+            margin-bottom: 15px;
+        }
+
+        button {
+            border: none;
+            background: #168bd0;
+            color: white;
+            padding: 13px 25px;
+            border-radius: 25px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 120, 190, 0.2);
+        }
+
+        button:hover {
+            background: #0d72ae;
+        }
+
+        .next-button {
+            display: none;
+        }
+
+        .next-button.show {
+            display: inline-block;
+        }
+
+        .heart {
+            position: fixed;
+            font-size: 20px;
+            animation: float 7s linear infinite;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: translateY(-10vh);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="heart" style="left:10%; animation-delay:0s;">💙</div>
+    <div class="heart" style="left:30%; animation-delay:2s;">🤍</div>
+    <div class="heart" style="left:55%; animation-delay:4s;">💙</div>
+    <div class="heart" style="left:80%; animation-delay:1s;">🤍</div>
+
+    <div class="container">
+
+        <h1>📸 7 Kenangan Kita 💙</h1>
+
+        <div class="subtitle">
+            Setiap foto punya cerita sendiri ✨
+        </div>
+
+        <div class="counter" id="counter">
+            Kenangan 1 dari 7
+        </div>
+
+        <div class="card-container">
+            <div class="card" id="memoryCard">
+
+                <div class="card-front">
+                    <img id="memoryImage" src="foto%20kenangan%201.jpg" alt="Foto Kenangan">
+                    <div class="photo-label">
+                        💙 Klik foto untuk membuka cerita
+                    </div>
+                </div>
+
+                <div class="card-back">
+                    <h2 id="memoryTitle">
+                        Kenangan Pertama 💙
+                    </h2>
+
+                    <p id="memoryText">
+                        Ini adalah salah satu momen yang
+                        selalu menyenangkan untuk diingat.
+                        Mungkin sederhana, tetapi justru
+                        momen seperti inilah yang membuat
+                        persahabatan kita terasa istimewa. 🤍
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="hint">
+            👆 Tekan kartu untuk membaliknya
+        </div>
+
+        <button id="nextButton" class="next-button">
+            Kenangan Berikutnya ➜
+        </button>
+
+    </div>
+
+    <script>
+
+        const memories = [
+
+            {
+                image: "foto%20kenangan%201.jpg",
+                title: "Kenangan Pertama 💙",
+                text: "Momen pertama yang menjadi bagian dari cerita persahabatan kita. Mungkin terlihat sederhana, tetapi akan selalu punya tempat spesial di ingatan. 🤍"
+            },
+
+            {
+                image: "foto%20kenangan%202.jpg",
+                title: "Kenangan Kedua 🤍",
+                text: "Salah satu momen yang membuat kita tertawa dan menikmati waktu bersama. Semoga cerita seperti ini terus bertambah. 💙"
+            },
+
+            {
+                image: "foto%20kenangan%203
