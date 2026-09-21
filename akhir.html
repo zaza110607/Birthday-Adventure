@@ -1,782 +1,456 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>Happy Birthday Piya 💙</title>
-
+    <title>Happy Birthday My Best Friend 💙</title>
 
     <style>
-
         * {
             box-sizing: border-box;
         }
 
-
         body {
-
             margin: 0;
-
             min-height: 100vh;
-
             font-family: Arial, sans-serif;
-
             background:
-                linear-gradient(
-                    135deg,
-                    #dff6ff,
-                    #ffffff,
-                    #b5e2ff
-                );
-
+                radial-gradient(circle at top, #ffffff, #dff4ff 45%, #a9dcfa);
             color: #164b6b;
-
             overflow-x: hidden;
-
         }
-
 
         .container {
-
-            width: 100%;
-
-            max-width: 900px;
-
-            margin: auto;
-
-            padding: 40px 15px 70px;
-
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             text-align: center;
-
-            position: relative;
-
-            z-index: 2;
-
+            padding: 45px 15px;
         }
 
+        /* JUDUL */
 
         .small-title {
-
-            color: #52809a;
-
-            font-size: 16px;
-
-            margin-bottom: 8px;
-
+            color: #168bd0;
+            font-size: 17px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
         }
-
 
         h1 {
-
+            margin: 0;
             color: #12669a;
-
-            font-size: 42px;
-
-            margin: 5px 0;
-
-            text-shadow:
-                0 3px 10px rgba(0,100,160,0.15);
-
+            font-size: 38px;
+            line-height: 1.2;
+            text-shadow: 0 4px 10px rgba(0, 100, 160, 0.15);
         }
-
 
         .birthday {
-
-            font-size: 22px;
-
-            color: #168bd0;
-
-            font-weight: bold;
-
-            margin-bottom: 30px;
-
+            margin-top: 12px;
+            color: #527d96;
+            font-size: 18px;
         }
-
 
         /* HATI FOTO */
 
         .heart-gallery {
-
-            width: 430px;
-
-            height: 390px;
-
-            max-width: 100%;
-
-            margin: 20px auto 35px;
-
             position: relative;
-
+            width: 360px;
+            height: 330px;
+            margin: 45px auto 30px;
         }
-
 
         .photo {
-
             position: absolute;
-
-            width: 105px;
-
-            height: 105px;
-
+            width: 85px;
+            height: 85px;
+            border-radius: 18px;
+            overflow: hidden;
             background: white;
-
-            padding: 5px;
-
-            border-radius: 15px;
-
+            padding: 4px;
             box-shadow:
-                0 8px 20px rgba(0,90,150,0.2);
-
-            object-fit: cover;
-
+                0 7px 20px rgba(0, 90, 150, 0.25);
             transition: 0.3s;
-
+            animation: photoFloat 3s ease-in-out infinite;
         }
-
 
         .photo:hover {
-
-            transform:
-                scale(1.15)
-                rotate(3deg);
-
-            z-index: 10;
-
+            transform: scale(1.15);
+            z-index: 20;
         }
 
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 14px;
+        }
 
-        /*
-        POSISI FOTO MEMBENTUK HATI
-        */
-
+        /* POSISI FOTO MEMBENTUK HATI */
 
         .p1 {
-            top: 40px;
-            left: 85px;
+            left: 90px;
+            top: 0;
         }
-
 
         .p2 {
-            top: 40px;
-            right: 85px;
+            left: 185px;
+            top: 0;
         }
-
 
         .p3 {
-            top: 120px;
-            left: 40px;
+            left: 45px;
+            top: 65px;
         }
-
 
         .p4 {
-            top: 120px;
-            left: 165px;
+            left: 135px;
+            top: 65px;
         }
-
 
         .p5 {
-            top: 120px;
-            right: 40px;
+            left: 230px;
+            top: 65px;
         }
-
 
         .p6 {
-            top: 205px;
-            left: 85px;
+            left: 65px;
+            top: 155px;
         }
-
 
         .p7 {
-            top: 205px;
-            right: 85px;
+            left: 160px;
+            top: 155px;
         }
-
 
         .p8 {
-            top: 285px;
-            left: 165px;
+            left: 112px;
+            top: 245px;
         }
-
 
         .p9 {
-            top: 285px;
-            left: 40px;
+            left: 205px;
+            top: 155px;
         }
-
 
         .p10 {
-            top: 285px;
-            right: 40px;
+            left: 160px;
+            top: 245px;
         }
 
+        @keyframes photoFloat {
+
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-5px);
+            }
+
+        }
 
         /* PESAN */
 
         .message {
-
-            background: rgba(255,255,255,0.96);
-
+            width: 100%;
+            max-width: 600px;
+            background: rgba(255,255,255,0.92);
+            padding: 28px 22px;
             border-radius: 28px;
-
-            padding: 30px 25px;
-
-            max-width: 650px;
-
-            margin: 0 auto;
-
             box-shadow:
-                0 10px 35px rgba(0,90,150,0.16);
-
+                0 10px 35px rgba(0, 90, 150, 0.16);
         }
-
 
         .message h2 {
-
             color: #12669a;
-
             margin-top: 0;
-
         }
-
 
         .message p {
-
+            color: #527d96;
             line-height: 1.8;
-
-            color: #42677d;
-
-            margin-bottom: 18px;
-
+            margin-bottom: 0;
         }
 
-
-        .special {
-
-            background: #e7f7ff;
-
-            border-left:
-                5px solid #168bd0;
-
-            padding: 18px;
-
-            border-radius: 12px;
-
-            margin: 25px 0;
-
-            color: #28617d;
-
-            font-weight: bold;
-
-        }
-
-
-        .final-text {
-
-            font-size: 21px;
-
+        .ending {
+            margin-top: 28px;
             color: #12669a;
-
+            font-size: 21px;
             font-weight: bold;
+        }
 
+        /* TOMBOL */
+
+        button {
             margin-top: 25px;
-
+            border: none;
+            background: #168bd0;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 25px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 6px 18px rgba(0, 120, 190, 0.25);
         }
 
-
-        .heart-text {
-
-            font-size: 35px;
-
-            margin: 15px 0;
-
+        button:hover {
+            background: #0d72ae;
         }
 
+        /* BINTANG */
+
+        .star {
+            position: fixed;
+            color: white;
+            font-size: 18px;
+            animation: sparkle 2s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes sparkle {
+
+            0%, 100% {
+                opacity: 0.2;
+                transform: scale(0.7);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.3);
+            }
+
+        }
 
         /* CONFETTI */
 
         .confetti {
-
             position: fixed;
-
             top: -20px;
-
-            font-size: 20px;
-
-            animation:
-                jatuh 5s linear infinite;
-
+            width: 9px;
+            height: 14px;
+            background: white;
+            animation: fall 4s linear forwards;
             pointer-events: none;
-
-            z-index: 1;
-
         }
 
-
-        @keyframes jatuh {
+        @keyframes fall {
 
             0% {
-
                 transform:
                     translateY(-20px)
                     rotate(0deg);
-
                 opacity: 1;
-
             }
 
             100% {
-
                 transform:
                     translateY(110vh)
-                    rotate(360deg);
-
+                    rotate(720deg);
                 opacity: 0;
-
             }
 
         }
 
+        /* HP */
 
-        /* HATI TERBANG */
-
-        .floating-heart {
-
-            position: fixed;
-
-            bottom: -30px;
-
-            font-size: 22px;
-
-            animation:
-                naik 7s linear infinite;
-
-            opacity: 0.5;
-
-            pointer-events: none;
-
-        }
-
-
-        @keyframes naik {
-
-            0% {
-
-                transform:
-                    translateY(0);
-
-                opacity: 0;
-
-            }
-
-            20% {
-
-                opacity: 0.5;
-
-            }
-
-            100% {
-
-                transform:
-                    translateY(-110vh);
-
-                opacity: 0;
-
-            }
-
-        }
-
-
-        @media (max-width: 600px) {
+        @media (max-width: 500px) {
 
             h1 {
-
-                font-size: 32px;
-
+                font-size: 30px;
             }
-
-
-            .birthday {
-
-                font-size: 18px;
-
-            }
-
 
             .heart-gallery {
-
-                width: 350px;
-
-                height: 330px;
-
+                width: 320px;
+                height: 300px;
+                transform: scale(0.9);
+                margin-top: 30px;
+                margin-bottom: 10px;
             }
 
-
-            .photo {
-
-                width: 80px;
-
-                height: 80px;
-
-            }
-
-
-            .p1 {
-                top: 30px;
-                left: 70px;
-            }
-
-
-            .p2 {
-                top: 30px;
-                right: 70px;
-            }
-
-
-            .p3 {
-                top: 95px;
-                left: 30px;
-            }
-
-
-            .p4 {
-                top: 95px;
-                left: 135px;
-            }
-
-
-            .p5 {
-                top: 95px;
-                right: 30px;
-            }
-
-
-            .p6 {
-                top: 160px;
-                left: 70px;
-            }
-
-
-            .p7 {
-                top: 160px;
-                right: 70px;
-            }
-
-
-            .p8 {
-                top: 225px;
-                left: 135px;
-            }
-
-
-            .p9 {
-                top: 225px;
-                left: 30px;
-            }
-
-
-            .p10 {
-                top: 225px;
-                right: 30px;
+            .message {
+                padding: 25px 18px;
             }
 
         }
-
     </style>
-
 </head>
-
 
 <body>
 
+    <!-- BINTANG -->
 
-    <!-- CONFETTI -->
-
-    <div class="confetti"
-         style="left:5%; animation-delay:0s;">
-        💙
-    </div>
-
-    <div class="confetti"
-         style="left:15%; animation-delay:1s;">
-        🤍
-    </div>
-
-    <div class="confetti"
-         style="left:30%; animation-delay:2s;">
-        ✨
-    </div>
-
-    <div class="confetti"
-         style="left:45%; animation-delay:0.5s;">
-        💙
-    </div>
-
-    <div class="confetti"
-         style="left:60%; animation-delay:2.5s;">
-        🤍
-    </div>
-
-    <div class="confetti"
-         style="left:75%; animation-delay:1.5s;">
-        ✨
-    </div>
-
-    <div class="confetti"
-         style="left:90%; animation-delay:3s;">
-        💙
-    </div>
-
-
-    <!-- HATI TERBANG -->
-
-    <div class="floating-heart"
-         style="left:10%; animation-delay:1s;">
-        💙
-    </div>
-
-    <div class="floating-heart"
-         style="left:35%; animation-delay:3s;">
-        🤍
-    </div>
-
-    <div class="floating-heart"
-         style="left:65%; animation-delay:0s;">
-        💙
-    </div>
-
-    <div class="floating-heart"
-         style="left:85%; animation-delay:2s;">
-        🤍
-    </div>
+    <div class="star" style="top:10%; left:10%;">✦</div>
+    <div class="star" style="top:20%; left:85%; animation-delay:0.5s;">✧</div>
+    <div class="star" style="top:45%; left:5%; animation-delay:1s;">✦</div>
+    <div class="star" style="top:60%; left:90%; animation-delay:1.5s;">✧</div>
+    <div class="star" style="top:80%; left:15%; animation-delay:0.7s;">✦</div>
+    <div class="star" style="top:75%; left:80%; animation-delay:1.2s;">✧</div>
 
 
     <div class="container">
 
-
         <div class="small-title">
-
-            ✨ A little surprise for you ✨
-
+            A SPECIAL DAY FOR YOU 💙
         </div>
-
 
         <h1>
-
-            Happy Birthday! 🎂
-
+            Happy Birthday<br>
+            My Best Friend 💙
         </h1>
 
-
         <div class="birthday">
-
-            My Best Friend, Piya 💙
-
+            🎂✨ Hari spesial untuk seseorang yang spesial ✨🎂
         </div>
 
 
-        <!-- GALERI BERBENTUK HATI -->
+        <!-- GALERI BENTUK HATI -->
 
         <div class="heart-gallery">
 
+            <div class="photo p1">
+                <img src="piya1.jpg" alt="Foto 1">
+            </div>
 
-            <img
-                class="photo p1"
-                src="foto%20kenangan%201.jpg"
-                alt="Kenangan 1"
-            >
+            <div class="photo p2">
+                <img src="piya2.jpg" alt="Foto 2">
+            </div>
 
+            <div class="photo p3">
+                <img src="piya3.jpg" alt="Foto 3">
+            </div>
 
-            <img
-                class="photo p2"
-                src="foto%20kenangan%202.jpg"
-                alt="Kenangan 2"
-            >
+            <div class="photo p4">
+                <img src="piya4.jpg" alt="Foto 4">
+            </div>
 
+            <div class="photo p5">
+                <img src="piya5.jpg" alt="Foto 5">
+            </div>
 
-            <img
-                class="photo p3"
-                src="foto%20kenangan%203.jpg"
-                alt="Kenangan 3"
-            >
+            <div class="photo p6">
+                <img src="piya6.jpg" alt="Foto 6">
+            </div>
 
+            <div class="photo p7">
+                <img src="piya7.jpg" alt="Foto 7">
+            </div>
 
-            <img
-                class="photo p4"
-                src="foto%20kenangan%204.jpg"
-                alt="Kenangan 4"
-            >
+            <div class="photo p8">
+                <img src="piya8.jpg" alt="Foto 8">
+            </div>
 
+            <div class="photo p9">
+                <img src="piya9.jpg" alt="Foto 9">
+            </div>
 
-            <img
-                class="photo p5"
-                src="foto%20kenangan%205.jpg"
-                alt="Kenangan 5"
-            >
-
-
-            <img
-                class="photo p6"
-                src="foto%20kenangan%206.jpg"
-                alt="Kenangan 6"
-            >
-
-
-            <img
-                class="photo p7"
-                src="foto%20kenangan%207.jpg"
-                alt="Kenangan 7"
-            >
-
-
-            <img
-                class="photo p8"
-                src="foto%20kenangan%208.jpg"
-                alt="Kenangan 8"
-            >
-
-
-            <img
-                class="photo p9"
-                src="foto%20kenangan%209.jpg"
-                alt="Kenangan 9"
-            >
-
-
-            <img
-                class="photo p10"
-                src="foto%20kenangan%2010.jpg"
-                alt="Kenangan 10"
-            >
+            <div class="photo p10">
+                <img src="piya10.jpg" alt="Foto 10">
+            </div>
 
         </div>
 
 
-        <!-- PESAN TERAKHIR -->
+        <!-- PESAN PENUTUP -->
 
         <div class="message">
 
-
-            <div class="heart-text">
-                💙 🤍 💙
-            </div>
-
-
             <h2>
-                Untuk Sahabatku
+                💌 Untuk Sahabatku
             </h2>
 
-
             <p>
-
-                Kalau kamu sudah sampai di halaman ini,
-                berarti kamu sudah melewati seluruh
-                kejutan kecil yang sudah disiapkan. 🎁
-
-            </p>
-
-
-            <p>
-
-                Dari sebuah password sederhana,
-                permainan kecil, foto-foto kenangan,
-                sampai pesan yang panjang...
-
-                semuanya dibuat hanya untuk satu tujuan:
-
-            </p>
-
-
-            <div class="special">
-
-                Membuat hari ulang tahunmu menjadi
-                sedikit lebih spesial. 💙
-
-            </div>
-
-
-            <p>
-
-                Terima kasih sudah menjadi bagian dari
-                banyak cerita dan kenangan.
-
-                Semoga kita masih bisa membuat
-                lebih banyak kenangan lagi di masa depan.
-
-            </p>
-
-
-            <p>
-
-                Jangan pernah lupa bahwa perjalananmu
-                masih panjang.
-
-                Masih banyak hal indah yang belum kamu
-                temui, banyak tempat yang belum kamu
-                datangi, dan banyak cerita yang belum
-                kita buat.
-
-            </p>
-
-
-            <p>
-
-                Jadi...
-
-                tetaplah tersenyum,
-                tetaplah menjadi dirimu sendiri,
-                dan teruslah mengejar hal-hal yang
-                membuatmu bahagia. 🤍
-
-            </p>
-
-
-            <div class="special">
-
-                🎂 SELAMAT ULANG TAHUN, PIYA! 🎂
-
+                Selamat ulang tahun! 🎂💙
                 <br><br>
 
-                Semoga semua doa baikmu
-                menjadi kenyataan.
+                Terima kasih sudah menjadi salah satu
+                orang yang memberikan banyak warna
+                dalam perjalanan hidup ini.
+                <br><br>
 
-            </div>
+                Terima kasih untuk semua tawa,
+                cerita, obrolan, dan momen-momen
+                sederhana yang akhirnya berubah
+                menjadi kenangan yang begitu berarti.
+                <br><br>
 
+                Semoga di usia yang baru ini,
+                semua hal baik datang kepadamu.
+                Semoga selalu diberikan kebahagiaan,
+                kesehatan, dan banyak alasan untuk
+                tersenyum.
+                <br><br>
 
-            <div class="final-text">
-
-                Happy Birthday<br>
-
-                My Best Friend 💙
-
-            </div>
-
-
-            <div class="heart-text">
-
-                💙🤍💙🤍💙
-
-            </div>
-
-
-            <p>
-
-                — From someone who is grateful
-                to have you as a friend. 🤍
-
+                Dan semoga persahabatan kita tetap
+                menjadi salah satu cerita indah yang
+                terus bertambah seiring berjalannya
+                waktu. 🤍
             </p>
 
+            <div class="ending">
+                Happy Birthday, Bestie! 💙🎂✨
+            </div>
 
         </div>
 
+
+        <button onclick="buatConfetti()">
+            🎉 Rayakan Sekali Lagi!
+        </button>
 
     </div>
 
 
-</body>
+    <script>
 
-      </html>
+        function buatConfetti() {
+
+            for (let i = 0; i < 80; i++) {
+
+                const confetti =
+                    document.createElement("div");
+
+                confetti.className =
+                    "confetti";
+
+                confetti.style.left =
+                    Math.random() * 100 + "vw";
+
+                confetti.style.animationDelay =
+                    Math.random() * 1.5 + "s";
+
+                confetti.style.transform =
+                    "rotate(" +
+                    Math.random() * 360 +
+                    "deg)";
+
+                document.body.appendChild(confetti);
+
+
+                setTimeout(function() {
+
+                    confetti.remove();
+
+                }, 5000);
+
+            }
+
+        }
+
+
+        /* CONFETTI OTOMATIS SAAT HALAMAN DIBUKA */
+
+        window.onload = function() {
+
+            buatConfetti();
+
+        };
+
+    </script>
+
+</body>
+</html>
