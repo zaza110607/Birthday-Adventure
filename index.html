@@ -4,76 +4,434 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>A Birthday Adventure 💙</title>
+    <title>Birthday Surprise 💙</title>
 
-    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #dff6ff, #ffffff, #bde0fe);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            color: #174a7e;
+        }
+
+        /* Background hearts */
+        .heart {
+            position: fixed;
+            color: rgba(65, 150, 220, 0.25);
+            font-size: 25px;
+            animation: floating 8s linear infinite;
+            z-index: 0;
+        }
+
+        .heart:nth-child(1) {
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .heart:nth-child(2) {
+            left: 30%;
+            animation-delay: 2s;
+        }
+
+        .heart:nth-child(3) {
+            left: 55%;
+            animation-delay: 4s;
+        }
+
+        .heart:nth-child(4) {
+            left: 75%;
+            animation-delay: 1s;
+        }
+
+        .heart:nth-child(5) {
+            left: 90%;
+            animation-delay: 3s;
+        }
+
+        @keyframes floating {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-120vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Container */
+        .container {
+            width: 92%;
+            max-width: 500px;
+            background: rgba(255, 255, 255, 0.94);
+            border-radius: 30px;
+            padding: 35px 25px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(40, 110, 170, 0.25);
+            border: 3px solid #bde0fe;
+            position: relative;
+            z-index: 2;
+        }
+
+        .icon {
+            font-size: 65px;
+            margin-bottom: 10px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        h1 {
+            color: #1769aa;
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+
+        .subtitle {
+            color: #527da3;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        /* Countdown */
+        .countdown {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin: 20px 0 25px;
+        }
+
+        .time-box {
+            background: linear-gradient(135deg, #e6f7ff, #ffffff);
+            border: 2px solid #a9d8f5;
+            border-radius: 15px;
+            padding: 14px 5px;
+        }
+
+        .number {
+            display: block;
+            font-size: 25px;
+            font-weight: bold;
+            color: #1261a0;
+        }
+
+        .label {
+            display: block;
+            font-size: 11px;
+            color: #5d86a8;
+            margin-top: 5px;
+        }
+
+        .birthday-date {
+            background: #e8f6ff;
+            padding: 12px;
+            border-radius: 15px;
+            color: #1769aa;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        /* Locked */
+        #locked {
+            display: block;
+        }
+
+        /* Open */
+        #opened {
+            display: none;
+        }
+
+        .opened-title {
+            font-size: 34px;
+            color: #1261a0;
+            margin-bottom: 15px;
+        }
+
+        .opened-text {
+            color: #527da3;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .enter-button {
+            border: none;
+            background: linear-gradient(135deg, #198fd1, #1261a0);
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            padding: 15px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(18, 97, 160, 0.3);
+            transition: 0.3s;
+        }
+
+        .enter-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(18, 97, 160, 0.4);
+        }
+
+        .small-text {
+            font-size: 13px;
+            color: #7295b0;
+            margin-top: 20px;
+        }
+
+        /* Mobile */
+        @media (max-width: 400px) {
+            .container {
+                padding: 28px 18px;
+            }
+
+            h1 {
+                font-size: 25px;
+            }
+
+            .icon {
+                font-size: 55px;
+            }
+
+            .countdown {
+                gap: 5px;
+            }
+
+            .number {
+                font-size: 21px;
+            }
+
+            .label {
+                font-size: 9px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <!-- Background dekorasi -->
-    <div class="hearts">
-        <span>💙</span>
-        <span>🤍</span>
-        <span>💙</span>
-        <span>🤍</span>
-        <span>💙</span>
-        <span>🤍</span>
-        <span>💙</span>
-        <span>🤍</span>
-    </div>
+    <!-- Floating hearts -->
+    <div class="heart">💙</div>
+    <div class="heart">🤍</div>
+    <div class="heart">💙</div>
+    <div class="heart">🤍</div>
+    <div class="heart">💙</div>
 
-    <!-- Halaman utama -->
-    <main class="container">
+    <div class="container">
 
-        <div class="gift">🎁</div>
+        <!-- ========================= -->
+        <!-- HALAMAN SEBELUM ULTAH -->
+        <!-- ========================= -->
 
-        <p class="small-title">
-            A LITTLE SURPRISE FOR YOU
-        </p>
+        <div id="locked">
 
-        <h1>
-            Happy Birthday,<br>
-            <span>Piya! 💙</span>
-        </h1>
+            <div class="icon">🎁</div>
 
-        <p class="description">
-            Ada sesuatu yang sudah disiapkan khusus untukmu...
-            Tapi sebelum membukanya, kamu harus melewati
-            sebuah perjalanan kecil terlebih dahulu. ✨
-        </p>
+            <h1>Birthday Surprise 💙</h1>
 
-        <!-- Kotak kode -->
-        <div class="password-box">
-
-            <h2>🔐 Secret Code</h2>
-
-            <p>
-                Masukkan kode rahasia untuk memulai
-                birthday adventure!
+            <p class="subtitle">
+                Ada sesuatu yang spesial sedang menunggu kamu...
+                <br>
+                Tapi belum waktunya dibuka 🤭
             </p>
 
-            <input
-                type="password"
-                id="password"
-                placeholder="Masukkan kode..."
-            >
+            <div class="birthday-date">
+                🎂 27 Oktober 2026
+            </div>
 
-            <button onclick="checkPassword()">
-                💙 Mulai Surprise
-            </button>
+            <p class="subtitle">
+                Surprise akan terbuka dalam:
+            </p>
 
-            <p id="message"></p>
+            <!-- COUNTDOWN -->
+            <div class="countdown">
+
+                <div class="time-box">
+                    <span class="number" id="days">0</span>
+                    <span class="label">HARI</span>
+                </div>
+
+                <div class="time-box">
+                    <span class="number" id="hours">0</span>
+                    <span class="label">JAM</span>
+                </div>
+
+                <div class="time-box">
+                    <span class="number" id="minutes">0</span>
+                    <span class="label">MENIT</span>
+                </div>
+
+                <div class="time-box">
+                    <span class="number" id="seconds">0</span>
+                    <span class="label">DETIK</span>
+                </div>
+
+            </div>
+
+            <p class="small-text">
+                Sabar yaa... 💙✨
+            </p>
 
         </div>
 
-        <p class="footer">
-            Made with 💙 for someone special
-        </p>
 
-    </main>
+        <!-- ========================= -->
+        <!-- HALAMAN SETELAH ULTAH -->
+        <!-- ========================= -->
 
-    <script src="script.js"></script>
+        <div id="opened">
+
+            <div class="icon">🎉</div>
+
+            <h2 class="opened-title">
+                Happy Birthday! 💙
+            </h2>
+
+            <p class="opened-text">
+                Yeyyy! Hari yang ditunggu akhirnya tiba! 🥳
+                <br><br>
+                Sekarang saatnya membuka kejutan kecil
+                yang sudah disiapkan khusus untuk kamu. 💙
+            </p>
+
+            <button class="enter-button" onclick="masukWebsite()">
+                💙 Buka Surprise
+            </button>
+
+            <p class="small-text">
+                Semoga hari ini penuh kebahagiaan! 🤍
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        // =========================================
+        // TANGGAL ULANG TAHUN
+        // 27 OKTOBER 2026
+        // =========================================
+
+        const tanggalUltah = new Date("2026-10-27T00:00:00");
+
+
+        // =========================================
+        // FUNGSI COUNTDOWN
+        // =========================================
+
+        function updateCountdown() {
+
+            const sekarang = new Date();
+
+            const selisih = tanggalUltah - sekarang;
+
+
+            // Jika waktunya sudah sampai
+            if (selisih <= 0) {
+
+                bukaWebsite();
+
+                return;
+            }
+
+
+            // Hitung hari
+            const days = Math.floor(
+                selisih / (1000 * 60 * 60 * 24)
+            );
+
+
+            // Hitung jam
+            const hours = Math.floor(
+                (selisih / (1000 * 60 * 60)) % 24
+            );
+
+
+            // Hitung menit
+            const minutes = Math.floor(
+                (selisih / (1000 * 60)) % 60
+            );
+
+
+            // Hitung detik
+            const seconds = Math.floor(
+                (selisih / 1000) % 60
+            );
+
+
+            // Tampilkan
+            document.getElementById("days").textContent =
+                days;
+
+            document.getElementById("hours").textContent =
+                String(hours).padStart(2, "0");
+
+            document.getElementById("minutes").textContent =
+                String(minutes).padStart(2, "0");
+
+            document.getElementById("seconds").textContent =
+                String(seconds).padStart(2, "0");
+        }
+
+
+        // =========================================
+        // MEMBUKA WEBSITE
+        // =========================================
+
+        function bukaWebsite() {
+
+            document.getElementById("locked").style.display =
+                "none";
+
+            document.getElementById("opened").style.display =
+                "block";
+        }
+
+
+        // =========================================
+        // TOMBOL MASUK KE QUIZ
+        // =========================================
+
+        function masukWebsite() {
+
+            window.location.href = "quiz.html";
+
+        }
+
+
+        // =========================================
+        // JALANKAN COUNTDOWN
+        // =========================================
+
+        updateCountdown();
+
+        setInterval(updateCountdown, 1000);
+
+    </script>
 
 </body>
-      </html>
+                        </html>
