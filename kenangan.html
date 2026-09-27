@@ -1,249 +1,496 @@
-<!DOCTYPE html>
-<html lang="id">
+<!DOCTYPE html><html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>7 Kenangan Kita 💙</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>7 Kenangan Kita 💙</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(
+            135deg,
+            #dff4ff,
+            #ffffff,
+            #bde3ff
+        );
+        color: #164b6b;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        overflow-x: hidden;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 430px;
+        text-align: center;
+        position: relative;
+        z-index: 2;
+    }
+
+    h1 {
+        margin: 0 0 8px;
+        color: #12669a;
+        font-size: 28px;
+    }
+
+    .subtitle {
+        margin-bottom: 20px;
+        color: #527d96;
+        font-size: 15px;
+    }
+
+    .counter {
+        background: white;
+        padding: 9px 18px;
+        border-radius: 20px;
+        display: inline-block;
+        margin-bottom: 18px;
+        box-shadow: 0 5px 15px rgba(0, 100, 160, 0.12);
+        font-weight: bold;
+        color: #12669a;
+    }
+
+    /* CARD */
+
+    .card-container {
+        perspective: 1000px;
+        width: 100%;
+        height: 430px;
+        margin-bottom: 18px;
+    }
+
+    .card {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        transition: transform 0.7s;
+        transform-style: preserve-3d;
+        cursor: pointer;
+    }
+
+    .card.flipped {
+        transform: rotateY(180deg);
+    }
+
+    .card-front,
+    .card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        border-radius: 25px;
+        background: white;
+        box-shadow: 0 10px 30px rgba(0, 90, 150, 0.18);
+        overflow: hidden;
+    }
+
+    /* FOTO DEPAN */
+
+    .card-front {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .card-front img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .photo-label {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(18, 102, 154, 0.88);
+        color: white;
+        padding: 14px;
+        font-weight: bold;
+    }
+
+    /* BAGIAN BELAKANG */
+
+    .card-back {
+        transform: rotateY(180deg);
+        padding: 30px 22px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .card-back h2 {
+        color: #12669a;
+        margin: 0 0 15px;
+        font-size: 23px;
+    }
+
+    .card-back p {
+        line-height: 1.7;
+        color: #42677d;
+        font-size: 15px;
+        margin: 0;
+    }
+
+    .hint {
+        font-size: 13px;
+        color: #6b91a8;
+        margin-bottom: 15px;
+    }
+
+    /* BUTTON */
+
+    button {
+        border: none;
+        background: #168bd0;
+        color: white;
+        padding: 13px 25px;
+        border-radius: 25px;
+        font-size: 15px;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 5px 15px rgba(0, 120, 190, 0.2);
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background: #0d72ae;
+        transform: scale(1.04);
+    }
+
+    button:active {
+        transform: scale(0.97);
+    }
+
+    .next-button {
+        display: none;
+    }
+
+    .next-button.show {
+        display: inline-block;
+    }
+
+    /* HATI */
+
+    .heart {
+        position: fixed;
+        font-size: 20px;
+        animation: float 7s linear infinite;
+        opacity: 0.5;
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    @keyframes float {
+        0% {
+            transform: translateY(100vh);
+            opacity: 0;
         }
+
+        20% {
+            opacity: 0.5;
+        }
+
+        100% {
+            transform: translateY(-10vh);
+            opacity: 0;
+        }
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 480px) {
 
         body {
-            margin: 0;
-            min-height: 100vh;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #dff4ff, #ffffff, #bde3ff);
-            color: #164b6b;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            overflow-x: hidden;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 430px;
-            text-align: center;
+            padding: 15px;
         }
 
         h1 {
-            margin-bottom: 8px;
-            color: #12669a;
-        }
-
-        .subtitle {
-            margin-bottom: 20px;
-            color: #527d96;
-        }
-
-        .counter {
-            background: white;
-            padding: 8px 18px;
-            border-radius: 20px;
-            display: inline-block;
-            margin-bottom: 18px;
-            box-shadow: 0 5px 15px rgba(0, 100, 160, 0.12);
-            font-weight: bold;
+            font-size: 24px;
         }
 
         .card-container {
-            perspective: 1000px;
-            width: 100%;
-            height: 430px;
-            margin-bottom: 20px;
-        }
-
-        .card {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            transition: transform 0.7s;
-            transform-style: preserve-3d;
-            cursor: pointer;
-        }
-
-        .card.flipped {
-            transform: rotateY(180deg);
-        }
-
-        .card-front,
-        .card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            border-radius: 25px;
-            background: white;
-            box-shadow: 0 10px 30px rgba(0, 90, 150, 0.18);
-            overflow: hidden;
-        }
-
-        .card-front img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .photo-label {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(18, 102, 154, 0.88);
-            color: white;
-            padding: 14px;
-            font-weight: bold;
+            height: 400px;
         }
 
         .card-back {
-            transform: rotateY(180deg);
-            padding: 30px 22px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            padding: 25px 20px;
         }
 
         .card-back h2 {
-            color: #12669a;
-            margin-bottom: 15px;
+            font-size: 21px;
         }
 
         .card-back p {
-            line-height: 1.7;
-            color: #42677d;
+            font-size: 14px;
         }
+    }
+</style>
 
-        .hint {
-            font-size: 13px;
-            color: #6b91a8;
-            margin-bottom: 15px;
-        }
+</head><body><!-- HATI BERGERAK -->
 
-        button {
-            border: none;
-            background: #168bd0;
-            color: white;
-            padding: 13px 25px;
-            border-radius: 25px;
-            font-size: 15px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0, 120, 190, 0.2);
-        }
+<div class="heart" style="left:10%; animation-delay:0s;">💙</div>
+<div class="heart" style="left:30%; animation-delay:2s;">🤍</div>
+<div class="heart" style="left:55%; animation-delay:4s;">💙</div>
+<div class="heart" style="left:80%; animation-delay:1s;">🤍</div>
+<div class="heart" style="left:90%; animation-delay:5s;">💙</div>
 
-        button:hover {
-            background: #0d72ae;
-        }
+<div class="container">
 
-        .next-button {
-            display: none;
-        }
+    <h1>📸 7 Kenangan Kita 💙</h1>
 
-        .next-button.show {
-            display: inline-block;
-        }
+    <div class="subtitle">
+        Setiap foto punya cerita sendiri ✨
+    </div>
 
-        .heart {
-            position: fixed;
-            font-size: 20px;
-            animation: float 7s linear infinite;
-            opacity: 0.5;
-            pointer-events: none;
-        }
+    <div class="counter" id="counter">
+        Kenangan 1 dari 7
+    </div>
 
-        @keyframes float {
-            0% {
-                transform: translateY(100vh);
-                opacity: 0;
-            }
+    <!-- KARTU -->
 
-            20% {
-                opacity: 0.5;
-            }
+    <div class="card-container">
 
-            100% {
-                transform: translateY(-10vh);
-                opacity: 0;
-            }
-        }
-    </style>
-</head>
+        <div class="card" id="memoryCard">
 
-<body>
+            <!-- DEPAN -->
 
-    <div class="heart" style="left:10%; animation-delay:0s;">💙</div>
-    <div class="heart" style="left:30%; animation-delay:2s;">🤍</div>
-    <div class="heart" style="left:55%; animation-delay:4s;">💙</div>
-    <div class="heart" style="left:80%; animation-delay:1s;">🤍</div>
+            <div class="card-front">
 
-    <div class="container">
+                <img
+                    id="memoryImage"
+                    src="foto kenangan1.jpg"
+                    alt="Foto Kenangan 1"
+                >
 
-        <h1>📸 7 Kenangan Kita 💙</h1>
-
-        <div class="subtitle">
-            Setiap foto punya cerita sendiri ✨
-        </div>
-
-        <div class="counter" id="counter">
-            Kenangan 1 dari 7
-        </div>
-
-        <div class="card-container">
-            <div class="card" id="memoryCard">
-
-                <div class="card-front">
-                    <img id="memoryImage" src="foto%20kenangan%201.jpg" alt="Foto Kenangan">
-                    <div class="photo-label">
-                        💙 Klik foto untuk membuka cerita
-                    </div>
-                </div>
-
-                <div class="card-back">
-                    <h2 id="memoryTitle">
-                        Kenangan Pertama 💙
-                    </h2>
-
-                    <p id="memoryText">
-                        Ini adalah salah satu momen yang
-                        selalu menyenangkan untuk diingat.
-                        Mungkin sederhana, tetapi justru
-                        momen seperti inilah yang membuat
-                        persahabatan kita terasa istimewa. 🤍
-                    </p>
+                <div class="photo-label">
+                    💙 Klik foto untuk membuka cerita
                 </div>
 
             </div>
-        </div>
 
-        <div class="hint">
-            👆 Tekan kartu untuk membaliknya
-        </div>
+            <!-- BELAKANG -->
 
-        <button id="nextButton" class="next-button">
-            Kenangan Berikutnya ➜
-        </button>
+            <div class="card-back">
+
+                <h2 id="memoryTitle">
+                    Kenangan Pertama 💙
+                </h2>
+
+                <p id="memoryText">
+                    Momen pertama yang menjadi bagian
+                    dari cerita persahabatan kita.
+                </p>
+
+            </div>
+
+        </div>
 
     </div>
 
-    <script>
+    <div class="hint" id="hint">
+        👆 Tekan kartu untuk membaliknya
+    </div>
 
-        const memories = [
+    <button
+        id="nextButton"
+        class="next-button">
+        Kenangan Berikutnya ➜
+    </button>
 
-            {
-                image: "foto%20kenangan%201.jpg",
-                title: "Kenangan Pertama 💙",
-                text: "Momen pertama yang menjadi bagian dari cerita persahabatan kita. Mungkin terlihat sederhana, tetapi akan selalu punya tempat spesial di ingatan. 🤍"
-            },
+</div>
 
-            {
-                image: "foto%20kenangan%202.jpg",
-                title: "Kenangan Kedua 🤍",
-                text: "Salah satu momen yang membuat kita tertawa dan menikmati waktu bersama. Semoga cerita seperti ini terus bertambah. 💙"
-            },
+<script>
 
-            {
-                image: "foto%20kenangan%203
+    /* =====================================
+       DATA 7 KENANGAN
+    ===================================== */
+
+    const memories = [
+
+        {
+            image: "foto kenangan1.jpg",
+            title: "Kenangan Pertama 💙",
+            text: "Momen pertama yang menjadi bagian dari cerita persahabatan kita. Mungkin terlihat sederhana, tetapi akan selalu punya tempat spesial di ingatan. 🤍"
+        },
+
+        {
+            image: "foto kenangan2.jpg",
+            title: "Kenangan Kedua 🤍",
+            text: "Salah satu momen yang membuat kita tertawa dan menikmati waktu bersama. Semoga cerita seperti ini terus bertambah. 💙"
+        },
+
+        {
+            image: "foto kenangan3.jpg",
+            title: "Kenangan Ketiga 💙",
+            text: "Ada banyak hal kecil yang ternyata menjadi kenangan besar. Terima kasih sudah menjadi bagian dari cerita yang begitu indah ini. ✨"
+        },
+
+        {
+            image: "foto kenangan4.jpg",
+            title: "Kenangan Keempat 🤍",
+            text: "Momen ini mungkin tidak sempurna, tetapi justru ketidaksempurnaan itulah yang membuatnya terasa nyata dan berharga. 💙"
+        },
+
+        {
+            image: "foto kenangan5.jpg",
+            title: "Kenangan Kelima 💙",
+            text: "Waktu terus berjalan dan banyak hal berubah, tetapi beberapa kenangan akan selalu terasa sama ketika kita mengingatnya kembali. 🤍"
+        },
+
+        {
+            image: "foto kenangan6.jpg",
+            title: "Kenangan Keenam 🤍",
+            text: "Semoga di antara banyaknya hari yang kita lewati, akan selalu ada ruang untuk membuat kenangan baru bersama. 💙"
+        },
+
+        {
+            image: "foto kenangan7.jpg",
+            title: "Kenangan Ketujuh 💙",
+            text: "Dan akhirnya kita sampai di kenangan terakhir. Tapi tenang, ini bukan akhir dari cerita kita. Masih akan ada banyak cerita dan kenangan baru yang menunggu. 🤍✨"
+        }
+
+    ];
+
+
+    /* =====================================
+       VARIABEL
+    ===================================== */
+
+    let currentMemory = 0;
+
+    const memoryCard =
+        document.getElementById("memoryCard");
+
+    const memoryImage =
+        document.getElementById("memoryImage");
+
+    const memoryTitle =
+        document.getElementById("memoryTitle");
+
+    const memoryText =
+        document.getElementById("memoryText");
+
+    const counter =
+        document.getElementById("counter");
+
+    const nextButton =
+        document.getElementById("nextButton");
+
+    const hint =
+        document.getElementById("hint");
+
+
+    /* =====================================
+       MEMBALIK KARTU
+    ===================================== */
+
+    memoryCard.addEventListener("click", function () {
+
+        memoryCard.classList.toggle("flipped");
+
+        if (memoryCard.classList.contains("flipped")) {
+
+            nextButton.classList.add("show");
+
+            hint.innerHTML =
+                "💙 Cerita kenangannya ada di balik foto";
+
+        } else {
+
+            nextButton.classList.remove("show");
+
+            hint.innerHTML =
+                "👆 Tekan kartu untuk membaliknya";
+
+        }
+
+    });
+
+
+    /* =====================================
+       TOMBOL BERIKUTNYA
+    ===================================== */
+
+    nextButton.addEventListener("click", function () {
+
+        /* Kalau masih ada kenangan berikutnya */
+
+        if (currentMemory < memories.length - 1) {
+
+            currentMemory++;
+
+            /* Ubah foto */
+
+            memoryImage.src =
+                memories[currentMemory].image;
+
+            memoryImage.alt =
+                "Foto Kenangan " +
+                (currentMemory + 1);
+
+            /* Ubah judul */
+
+            memoryTitle.textContent =
+                memories[currentMemory].title;
+
+            /* Ubah cerita */
+
+            memoryText.textContent =
+                memories[currentMemory].text;
+
+            /* Ubah counter */
+
+            counter.textContent =
+                "Kenangan " +
+                (currentMemory + 1) +
+                " dari 7";
+
+
+            /* Balik kartu kembali ke depan */
+
+            memoryCard.classList.remove("flipped");
+
+
+            /* Sembunyikan tombol sebentar */
+
+            nextButton.classList.remove("show");
+
+            hint.innerHTML =
+                "👆 Tekan kartu untuk membuka cerita";
+
+
+            /* Kalau sudah kenangan terakhir */
+
+            if (currentMemory === memories.length - 1) {
+
+                nextButton.textContent =
+                    "Lihat Galeri ➜";
+
+            }
+
+        } else {
+
+            /* Setelah kenangan ke-7 */
+
+            window.location.href =
+                "galeri.html";
+
+        }
+
+    });
+
+</script>
+
+</body>
+</html>
